@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #slider{
+            height: 400px;
+            width: 100%;
+            border: 2px solid black;
+            position: relative;
+        }
+        #sliderimg{
+            height: 100%;
+            width: 100%;
+        }
+        .previous{
+            position: absolute;
+            top: 180px;
+            left: 5px;
+            font-size: 35px;
+            cursor: pointer;
+        }
+        .next{
+            position: absolute;
+            top: 180px;
+            right: 5px;
+            font-size: 35px;
+            cursor: pointer;
+        }
+    </style>
+    <div id="slider">
+        <img id="sliderimg"/>
+        <input type="button" value="<" class="previous" onclick="previousbutton()"/>
+        <input type="button" value=">" class="next" onclick="nextbutton()"/>
+    </div>
+    <script>
+        var count= 0;
+        let myimages= ["./images/img1.jpg","./images/img2.jpg","./images/img3.jpg","./images/img4.jpg","./images/img5.jpg","./images/img6.webp"];
+        const myslider= ()=>{
+            if(count>= 5){
+                count= 0;
+            }else{
+                count++;
+            }
+            console.log(count)
+            document.getElementById('sliderimg').src= myimages[count];
+        }
+        const previousbutton= ()=>{
+            clearInterval(myinterval);
+            if(count<=0){
+                count= 5;
+            }else{
+                count--;
+            }
+            console.log(count)
+            document.getElementById('sliderimg').src= myimages[count];
+        }
+        const nextbutton= ()=>{
+            clearInterval(myinterval);
+            if(count>= 5){
+                count= 0;
+            }else{
+                count++;
+            }
+            console.log(count)
+            document.getElementById('sliderimg').src= myimages[count];
+        }
+        const myinterval= setInterval(()=>{
+            myslider();
+        },2000)
+        
+    </script>
+</html>
